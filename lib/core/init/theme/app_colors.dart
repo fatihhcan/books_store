@@ -36,7 +36,7 @@ class LightColors extends AppColors {
   Color get buttonBackgroundColor => burntSienna;
 
   @override
-  Color get splashBackgroundColor => burntSienna;
+  Color get splashBackgroundColor => portGore;
 
   @override
   Color get titleColor => violet;

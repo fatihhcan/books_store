@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() => runApp(const MyApp());
+import 'core/init/navigation/navigation_routes.dart';
+import 'core/init/navigation/navigation_service.dart';
+import 'core/init/theme/app_theme_manager.dart';
+
+void main() async {
+    WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      builder: (context, widget) =>  MaterialApp(
+        debugShowCheckedModeBanner: false,
+        navigatorKey: NavigationService.instance.navigatorKey,
+        onGenerateRoute: NavigationRoute.instance.generateRoute,
+        theme: AppThemeManager.instance.lightTheme,
+        themeMode: ThemeMode.light,
       ),
     );
   }

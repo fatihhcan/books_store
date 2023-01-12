@@ -41,8 +41,8 @@ extension MediaQueryExtension on BuildContext {
 extension EmptySpaceExtension on BuildContext {
   SizedBox get sizedBoxLowVertical => SizedBox(height: dynamicSquareContainerHeight(lowValue));
   SizedBox get sizedBoxNormalVertical => SizedBox(height: normalValue);
-  SizedBox get sizedBoxMediumVertical => SizedBox(height: dynamicSquareContainerHeight(mediumValue));
-  SizedBox get sizedBoxHighVertical => SizedBox(height: highValue);
+  SizedBox get sizedBoxMediumVertical => SizedBox(height: dynamicSquareContainerHeight(mediumValue) * 5);
+  SizedBox get sizedBoxHighVertical => SizedBox(height: highValue * 2);
 
   SizedBox get sizedBoxLowHorizontal => SizedBox(width: dynamicSquareContainerWidth(lowValue));
   SizedBox get sizedBoxNormalHorizontal => SizedBox(width: normalValue);
@@ -70,14 +70,19 @@ extension PaddingExtensionSymmetric on BuildContext {
 }
 
 extension RadiusExtension on BuildContext {
-  Radius get lowRadius => Radius.circular(width * 0.02);
+  Radius get lowRadius => Radius.circular(width * 0.01);
   Radius get normalRadius => Radius.circular(width * 0.05);
   Radius get highadius => Radius.circular(width * 0.1);
   BorderRadius get borderlowRadius => BorderRadius.circular(width * 0.02);
   BorderRadius get bordernormalRadius => BorderRadius.circular(width * 0.05);
   BorderRadius get borderhighadius => BorderRadius.circular(width * 0.1);
 }
-
+extension ThemeExtension on BuildContext {
+  ThemeData get theme => Theme.of(this);
+  ColorScheme get colors => theme.colorScheme;
+  TextTheme get textTheme => theme.textTheme;
+  Brightness get brightness => theme.brightness;
+}
 extension ColorExtension on BuildContext {
   AppColors get appColors => LightColors();
 }
