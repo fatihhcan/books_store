@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/base/cubit/base_cubit.dart';
+import '../../../core/constants/enums/navigation_routes.dart';
 
 part 'splash_state.dart';
 
@@ -21,7 +22,9 @@ class SplashCubit extends Cubit<SplashState> with BaseCubit {
 //route
     });
   }
-
+  navigationLogin() {
+     navigation.navigateToPage(path: NavigationConstants.LOGIN_VIEW);
+  }
   @override
   void setContext(BuildContext context) => this.context = context;
 }

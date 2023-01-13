@@ -4,9 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/init/navigation/navigation_routes.dart';
 import 'core/init/navigation/navigation_service.dart';
 import 'core/init/theme/app_theme_manager.dart';
+import 'core/utility/shared_prefs.dart';
 
-void main() async {
+void main() {
     WidgetsFlutterBinding.ensureInitialized();
+    SharedPrefs.initialize();
   runApp(MyApp());
 }
 

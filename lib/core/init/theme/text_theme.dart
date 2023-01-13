@@ -35,7 +35,7 @@ class TextThemeManager {
         fontFamily:GoogleFonts.manrope().fontFamily,
         fontSize: 20.sp,
         decoration: TextDecoration.underline,
-        fontWeight: FontWeight.w300,
+        fontWeight: FontWeight.w700,
         color: Colors.white,
         decorationColor: Colors.white.withOpacity(0.01),
       ),
@@ -62,7 +62,7 @@ class TextThemeManager {
       subtitle1:  TextStyle(
         fontFamily: GoogleFonts.manrope().fontFamily,
         fontSize: 12.sp,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w700,
         decoration: TextDecoration.underline,
         color: Colors.white,
         decorationColor: Colors.white.withOpacity(0.01),
