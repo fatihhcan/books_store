@@ -11,5 +11,10 @@ class TextConstants {
   static const hintTextPassword = '●●●●●●●●●●●';
   static const alertMessage = 'Fields cannot be left empty';
   static const alertOk = 'Ok';
+  static const registerAnAccount = 'Register an account';
+  static const welcome = 'Welcome';
+  static const name = 'Name';
+  static const hintTextName = 'John Done';
+
 
 }

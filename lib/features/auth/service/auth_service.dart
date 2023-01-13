@@ -1,4 +1,6 @@
 import 'package:books_store/features/auth/model/login/request_login_model.dart';
+import 'package:books_store/features/auth/model/register/register_model.dart';
+import 'package:books_store/features/auth/model/register/request_register_model.dart';
 import 'package:dio/dio.dart';
 
 import '../../../core/base/error/dio_exception.dart';
@@ -32,6 +34,28 @@ class AuthService extends IAuthService {
       
     } on DioError catch (e) {
       throw DioException.fromDioError(e);
+    }
+  }
+
+  @override
+  Future<RegisterModel?> fetchRegister(String email, String name, String password) async {
+    try {
+      final response = await client.post(NetWorkRoutes.REGISTER.value,
+          options: Options(headers: {
+            'Content-Type': 'application/json',
+          }),
+          data: RequestRegisterModel(
+                  email: email,
+                  name: name,
+                  password: password)
+              .toJson());
+      final RegisterModel? result =
+          ResponseParser<RegisterModel>(response: response['action_register']).fromMap(model: RegisterModel());
+      return result;
+      
+    } on DioError catch (e) {
+      throw DioException.fromDioError(e);
+      
     }
   }
 }

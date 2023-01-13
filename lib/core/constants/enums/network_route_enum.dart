@@ -1,5 +1,6 @@
 enum NetWorkRoutes {
   TOKEN,
+  REGISTER,
   HOME,
   PRODUCT
 }
@@ -9,9 +10,10 @@ extension NetworkRoutesString on NetWorkRoutes {
     switch (this) {
       case NetWorkRoutes.TOKEN:
         return 'login';
-
+      case NetWorkRoutes.REGISTER:
+        return 'register';
       case NetWorkRoutes.HOME:
-        return  'api/Announcement/v1/Current';
+        return  '';
 
       default:
         throw Exception('Route not found');

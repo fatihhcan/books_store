@@ -19,8 +19,8 @@ class CustomTextFormField extends StatelessWidget {
       this.inputFormatters,
       this.keyboardType,
       required this.controller,
-      required this.validator,
-      required this.autovalidateMode,
+      this.validator,
+      this.autovalidateMode,
       this.maxLength,
       this.obscureText = false
       });

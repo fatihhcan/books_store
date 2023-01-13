@@ -13,6 +13,7 @@ class AuthCubit extends Cubit<AuthState> with BaseCubit {
   AuthCubit() : super(const AuthState());
   TextEditingController? controllerEmail;
   TextEditingController? controllerPassword;
+  TextEditingController? controllerName;
   late AuthService authService;
 
   @override
@@ -23,6 +24,7 @@ class AuthCubit extends Cubit<AuthState> with BaseCubit {
   void initService() {
     controllerEmail = TextEditingController();
     controllerPassword = TextEditingController();
+    controllerName = TextEditingController();
     authService = AuthService(dioManager.BookStoreClient);
   }
 
@@ -46,7 +48,7 @@ class AuthCubit extends Cubit<AuthState> with BaseCubit {
     if (AppStateManager.instance.accessToken.isNotEmpty) {
       navigation.navigateToPage(path: NavigationConstants.HOME_VIEW);
       if (state.rememberMe) {
-      SharedPrefs.setToken(AppStateManager.instance.accessToken);
+        SharedPrefs.setToken(AppStateManager.instance.accessToken);
       }
     } else {
       navigation.navigateToPage(path: NavigationConstants.LOGIN_VIEW);
@@ -54,11 +56,35 @@ class AuthCubit extends Cubit<AuthState> with BaseCubit {
   }
 
   navigationRegister() {
-     navigation.navigateToPage(path: NavigationConstants.REGISTER_VIEW);
+    navigation.navigateToPage(path: NavigationConstants.REGISTER_VIEW);
   }
 
   rememberMeCheckBox(bool ischeck) {
     emit(state.copyWith(rememberMe: ischeck));
+  }
+
+  // Register
+  void registerLoading(bool loading) {
+    emit(state.copyWith(registerLoading: loading));
+  }
+
+  Future<void> register(String email, String name, String password) async {
+    registerLoading(true);
+    if (email.isNotEmpty && password.isNotEmpty && name.isNotEmpty) {
+      await authService.fetchRegister(email, name, password);
+      navigationRegisterToHome();
+    } else {
+      customShowAlertDialog(context!);
+    }
+    registerLoading(false);
+  }
+
+  navigationLogin() {
+    navigation.navigateToPage(path: NavigationConstants.LOGIN_VIEW);
+  }
+
+  navigationRegisterToHome() {
+    navigation.navigateToPage(path: NavigationConstants.HOME_VIEW);
   }
 
   @override
