@@ -3,6 +3,7 @@ class NavigationConstants {
   static const REGISTER_VIEW = 'registerView';
   static const LOGIN_VIEW = 'loginView';
   static const HOME_VIEW = 'homeView';
+  static const PRODUCTS_VIEW = 'productsView';
   static const PRODUCT_DETAIL_VIEW = 'productDetailView';
 
 }

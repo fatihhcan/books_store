@@ -12,6 +12,7 @@ class ImageConstants {
 
   String get filterIcon => toPng('icons','filter_icon');
   String get searchIcon => toPng('icons','search_icon');
+  String get backIcon => toPng('icons','back_icon');
   
 
 

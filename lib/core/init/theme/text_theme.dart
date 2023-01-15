@@ -67,6 +67,15 @@ class TextThemeManager {
         color: Colors.white,
         decorationColor: Colors.white.withOpacity(0.01),
       ),
+
+        subtitle2:  TextStyle(
+        fontFamily: GoogleFonts.manrope().fontFamily,
+        fontSize: 8.sp,
+        fontWeight: FontWeight.w700,
+        decoration: TextDecoration.underline,
+        color: Colors.white,
+        decorationColor: Colors.white.withOpacity(0.01),
+      ),
     );
   }
 }

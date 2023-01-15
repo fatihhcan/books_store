@@ -1,4 +1,6 @@
+import 'package:books_store/core/constants/enums/navigation_routes.dart';
 import 'package:books_store/core/init/app_state/app_state.dart';
+import 'package:books_store/core/utility/arguments_product.dart';
 import 'package:books_store/features/home/model/categories_model.dart';
 import 'package:books_store/features/home/model/image_model.dart';
 import 'package:books_store/features/home/model/products_model.dart';
@@ -19,11 +21,11 @@ class HomeCubit extends Cubit<HomeState> with BaseCubit {
   late List<ProductsModel> productsChildren = [];
   late List<ProductsModel> productsPhilosopyh = [];
   late List<ProductsModel> productsHello = [];
-  late List<ImageModel> imageModel1 = [];
-  late List<ImageModel> imageModel2 = [];
-  late List<ImageModel> imageModel3 = [];
-  late List<ImageModel> imageModel4 = [];
-  late List<ImageModel> imageModel5 = [];
+  late List<ImageModel> imageBestSeller = [];
+  late List<ImageModel> imageClassics = [];
+  late List<ImageModel> imageChildren = [];
+  late List<ImageModel> imagePhilosopyh = [];
+  late List<ImageModel> imageHello = [];
   // 1 -> best seller 2 -> classics 3 -> children 4 -> philosopyh 5 -> hello
   List<String> categoriesId = ['1', '2', '3', '4', '6'];
   @override
@@ -34,7 +36,7 @@ class HomeCubit extends Cubit<HomeState> with BaseCubit {
   void initService() {
     homeService = HomeService(dioManager.BookStoreClient);
     fetchCategories();
-    fetchProducts(); 
+    fetchProducts();
   }
 
   void categoriesLoading(bool loading) {
@@ -62,35 +64,34 @@ class HomeCubit extends Cubit<HomeState> with BaseCubit {
     productsBestSeller = AppStateManager.instance.products;
     for (var i = 0; i < productsBestSeller.length; i++) {
       await homeService.fetchImage(productsBestSeller[i].cover!);
-      imageModel1.add( AppStateManager.instance.image!);
+      imageBestSeller.add(AppStateManager.instance.image!);
     }
 
     await homeService.fetchProducts(categoriesId[1]);
     productsClassics = AppStateManager.instance.products;
     for (var i = 0; i < productsClassics.length; i++) {
       await homeService.fetchImage(productsClassics[i].cover!);
-          imageModel2.add( AppStateManager.instance.image!);
+      imageClassics.add(AppStateManager.instance.image!);
     }
     await homeService.fetchProducts(categoriesId[2]);
     productsChildren = AppStateManager.instance.products;
-      for (var i = 0; i < productsChildren.length; i++) {
+    for (var i = 0; i < productsChildren.length; i++) {
       await homeService.fetchImage(productsChildren[i].cover!);
-           imageModel3.add( AppStateManager.instance.image!);
+      imageChildren.add(AppStateManager.instance.image!);
     }
 
     await homeService.fetchProducts(categoriesId[3]);
     productsPhilosopyh = AppStateManager.instance.products;
-      for (var i = 0; i < productsPhilosopyh.length; i++) {
+    for (var i = 0; i < productsPhilosopyh.length; i++) {
       await homeService.fetchImage(productsPhilosopyh[i].cover!);
-         imageModel4.add( AppStateManager.instance.image!);
+      imagePhilosopyh.add(AppStateManager.instance.image!);
     }
-
 
     await homeService.fetchProducts(categoriesId[4]);
     productsHello = AppStateManager.instance.products;
-      for (var i = 0; i < productsHello.length; i++) {
+    for (var i = 0; i < productsHello.length; i++) {
       await homeService.fetchImage(productsHello[i].cover!);
-           imageModel5.add( AppStateManager.instance.image!);
+      imageHello.add(AppStateManager.instance.image!);
     }
     productsLoading(false);
   }
@@ -111,17 +112,24 @@ class HomeCubit extends Cubit<HomeState> with BaseCubit {
 
   productMatchImage(int categoryId) {
     if (categoryId == 1) {
-      
-      return imageModel1;
+      return imageBestSeller;
     } else if (categoryId == 2) {
-      return imageModel2;
+      return imageClassics;
     } else if (categoryId == 3) {
-      return imageModel3;
+      return imageChildren;
     } else if (categoryId == 4) {
-      return imageModel4;
+      return imagePhilosopyh;
     } else {
-      return imageModel4;
+      return imageHello;
     }
+  }
+
+  navigateProducts(int? categoryId, String? categoryName, BuildContext context) {
+           Navigator.of(context).pushNamed(NavigationConstants.PRODUCTS_VIEW,
+                arguments: ProductsArguments(
+                    categoryId: categoryId,
+                    categoryName: categoryName
+                  ));
   }
 
   @override

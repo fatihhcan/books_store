@@ -24,24 +24,7 @@ class HomeView extends StatelessWidget {
       },
       onPageBuilder: (HomeCubit cubit) => Scaffold(
           backgroundColor: context.appColors.scaffoldBackgroundColor,
-          appBar: AppBar(
-            elevation: 1,
-            backgroundColor: context.appColors.white,
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Image.asset(ImageConstants.instance.homeLogo),
-            ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Text(
-                  TextConstants.catalog,
-                  style: context.textTheme.headline4!
-                      .copyWith(color: context.appColors.violet),
-                ),
-              )
-            ],
-          ),
+          appBar: buildAppbar(context),
           body: Column(
             children: [
               context.sizedBoxNormalVertical,
@@ -81,8 +64,9 @@ class HomeView extends StatelessWidget {
                                                   textAlign: TextAlign.start,
                                                 ),
                                                 GestureDetector(
-                                                  onTap: () {},
-                                                  child: Text(TextConstants.viewAll, style: context.textTheme.subtitle1!.copyWith(color: context.appColors.burntSienna),)),
+                                                  onTap: () => cubit.navigateProducts(cubit.categoriesList[index].id, cubit.categoriesList[index].name, context), 
+                                                  child: Text(TextConstants.viewAll, style: context.textTheme.subtitle1!.copyWith(color: context.appColors.burntSienna),)
+                                                  ),
                                               ],
                                             ),
                                           ),
@@ -127,6 +111,27 @@ class HomeView extends StatelessWidget {
             ],
           )),
     );
+  }
+
+  AppBar buildAppbar(BuildContext context) {
+    return AppBar(
+          elevation: 1,
+          backgroundColor: context.appColors.white,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Image.asset(ImageConstants.instance.homeLogo),
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Text(
+                TextConstants.catalog,
+                style: context.textTheme.headline4!
+                    .copyWith(color: context.appColors.violet),
+              ),
+            )
+          ],
+        );
   }
 
   Padding buildSearch(BuildContext context) {
