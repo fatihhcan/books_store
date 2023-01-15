@@ -1,4 +1,8 @@
 
+import 'package:books_store/features/home/model/categories_model.dart';
+import 'package:books_store/features/home/model/image_model.dart';
+import 'package:books_store/features/home/model/products_model.dart';
+
 String apiAccessToken = '';
 class AppStateManager {
   static AppStateManager? _instance;
@@ -8,7 +12,9 @@ class AppStateManager {
 
   String accessToken = apiAccessToken;
 
-  List<dynamic> cityList = [];
+  List<CategoriesModel> categories = [];
+  List<ProductsModel> products = [];
+  ImageModel? image;
 
 
   AppStateManager.init();

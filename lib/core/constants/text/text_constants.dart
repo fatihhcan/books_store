@@ -15,6 +15,9 @@ class TextConstants {
   static const welcome = 'Welcome';
   static const name = 'Name';
   static const hintTextName = 'John Done';
+  static const search = 'Search';
+  static const viewAll = 'View All';
+  static const catalog = 'Catalog';
 
 
 }

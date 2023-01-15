@@ -1,8 +1,9 @@
 enum NetWorkRoutes {
   TOKEN,
   REGISTER,
-  HOME,
-  PRODUCT
+  CATEGORIES,
+  PRODUCT,
+  IMAGE
 }
 
 extension NetworkRoutesString on NetWorkRoutes {
@@ -12,9 +13,12 @@ extension NetworkRoutesString on NetWorkRoutes {
         return 'login';
       case NetWorkRoutes.REGISTER:
         return 'register';
-      case NetWorkRoutes.HOME:
-        return  '';
-
+      case NetWorkRoutes.CATEGORIES:
+        return  'categories';
+      case NetWorkRoutes.PRODUCT:
+        return  'products';
+      case NetWorkRoutes.IMAGE:
+        return  'cover_image';
       default:
         throw Exception('Route not found');
     }

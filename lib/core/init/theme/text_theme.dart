@@ -52,8 +52,8 @@ class TextThemeManager {
 
       bodyText1: TextStyle(
         fontFamily:GoogleFonts.manrope().fontFamily,
-        fontSize: 14.sp,
-        fontWeight: FontWeight.w500,
+        fontSize: 10.sp,
+        fontWeight: FontWeight.w600,
         decoration: TextDecoration.underline,
         color: Colors.white,
         decorationColor: Colors.white.withOpacity(0.01),
