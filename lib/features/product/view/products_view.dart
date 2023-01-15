@@ -62,11 +62,14 @@ class ProductsView extends StatelessWidget {
                                     crossAxisCount: 2),
                                     itemCount: cubit.productsList.length,
                                     itemBuilder: (BuildContext context, index) {
-                                    return VerticalProductCard(
-                                    imgURL: cubit.imageProducts[index].url,
-                                    bookTitle: cubit.productsList[index].name,
-                                    bookAuthor: cubit.productsList[index].author,
-                                    bookPrice: cubit.productsList[index].price,
+                                    return GestureDetector(
+                                      onTap: () => cubit.navigateDetailProduct(cubit.productsList[index].name, cubit.imageProducts[index].url, cubit.productsList[index].name, cubit.productsList[index].author, cubit.productsList[index].price.toString(), cubit.productsList[index].description, context),
+                                      child: VerticalProductCard(
+                                      imgURL: cubit.imageProducts[index].url,
+                                      bookTitle: cubit.productsList[index].name,
+                                      bookAuthor: cubit.productsList[index].author,
+                                      bookPrice: cubit.productsList[index].price,
+                                      ),
                                     );              
                                     }),
                                   ),

@@ -3,7 +3,9 @@ enum NetWorkRoutes {
   REGISTER,
   CATEGORIES,
   PRODUCT,
-  IMAGE
+  IMAGE,
+  LIKE,
+  UNLIKE
 }
 
 extension NetworkRoutesString on NetWorkRoutes {
@@ -19,6 +21,10 @@ extension NetworkRoutesString on NetWorkRoutes {
         return  'products';
       case NetWorkRoutes.IMAGE:
         return  'cover_image';
+      case NetWorkRoutes.LIKE:
+        return  'like';
+      case NetWorkRoutes.UNLIKE:
+        return  'unlike';
       default:
         throw Exception('Route not found');
     }

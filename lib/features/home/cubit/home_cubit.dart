@@ -33,10 +33,10 @@ class HomeCubit extends Cubit<HomeState> with BaseCubit {
     initService();
   }
 
-  void initService() {
+  void initService() async{
     homeService = HomeService(dioManager.BookStoreClient);
-    fetchCategories();
-    fetchProducts();
+    await fetchCategories();
+    await fetchProducts();
   }
 
   void categoriesLoading(bool loading) {
@@ -134,4 +134,5 @@ class HomeCubit extends Cubit<HomeState> with BaseCubit {
 
   @override
   void setContext(BuildContext context) => this.context = context;
+  
 }

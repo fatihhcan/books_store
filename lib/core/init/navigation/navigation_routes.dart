@@ -1,12 +1,10 @@
-import 'package:books_store/core/init/navigation/navigate_exception.dart';
 import 'package:books_store/core/utility/arguments_product.dart';
 import 'package:books_store/features/home/view/home_view.dart';
+import 'package:books_store/features/product/view/products_detail_view.dart';
 import 'package:books_store/features/product/view/products_view.dart';
 import 'package:flutter/material.dart';
 import '../../../features/auth/view/login_view.dart';
 import '../../../features/auth/view/register_view.dart';
-import '../../../features/home/model/image_model.dart';
-import '../../../features/home/model/products_model.dart';
 import '../../../features/splash/view/splah_view.dart';
 import '../../components/cards/not_found_navigation.dart';
 import '../../constants/enums/navigation_routes.dart';
@@ -20,7 +18,7 @@ class NavigationRoute {
   Route<dynamic> generateRoute(RouteSettings args) {
     switch (args.name) {
       case NavigationConstants.DEFAULT:
-        return normalNavigate(const HomeView());
+        return normalNavigate(const SplashView());
       case NavigationConstants.LOGIN_VIEW:
         return normalNavigate(const LoginView());
       case NavigationConstants.REGISTER_VIEW:
@@ -34,7 +32,10 @@ class NavigationRoute {
             builder: (_) => ProductsView(categoryName: argsProducts.categoryName, categoryId: argsProducts.categoryId));
     
       case NavigationConstants.PRODUCT_DETAIL_VIEW:
-        return normalNavigate(const RegisterView());
+        final ProductDetailArguments argsProductsDetail =
+            args.arguments as ProductDetailArguments;
+               return MaterialPageRoute(
+            builder: (_) => ProductsDetailView(productName: argsProductsDetail.productName, imgURL: argsProductsDetail.imgURL, bookAuthor: argsProductsDetail.bookAuthor, bookTitle: argsProductsDetail.bookTitle, bookPrice: argsProductsDetail.bookPrice, bookDescription: argsProductsDetail.bookDescription, bookId: argsProductsDetail.bookId));
       default:
         return normalNavigate(const NotFoundNavigation());
     }

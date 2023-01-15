@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:books_store/core/utility/arguments_product.dart';
+import 'package:books_store/features/product/service/product_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/base/cubit/base_cubit.dart';
@@ -13,6 +15,7 @@ part 'product_state.dart';
 class ProductCubit extends Cubit<ProductState> with BaseCubit {
   ProductCubit() : super(const ProductState());
   late HomeService homeService;
+  late ProductService productService;
   late List<ProductsModel> productsList = [];
   late List<ImageModel> imageProducts = [];
 
@@ -23,14 +26,19 @@ class ProductCubit extends Cubit<ProductState> with BaseCubit {
 
   void initService() {
     homeService = HomeService(dioManager.BookStoreClient);
+    productService = ProductService(dioManager.BookStoreClient);
   }
 
   void productsLoading(bool loading) {
     emit(state.copyWith(productsLoading: loading));
   }
 
-  void categoriesLoading(bool loading) {
-    emit(state.copyWith(categoriesLoading: loading));
+  void likeLoading(bool loading) {
+    emit(state.copyWith(likeLoading: loading));
+  }
+
+  void unLikeLoading(bool loading) {
+    emit(state.copyWith(unLikeLoading: loading));
   }
 
   Future<void> fetchProducts(String? categoryId) async {
@@ -41,12 +49,54 @@ class ProductCubit extends Cubit<ProductState> with BaseCubit {
       await homeService.fetchImage(productsList[i].cover!);
       imageProducts.add(AppStateManager.instance.image!);
     }
-
     productsLoading(false);
   }
 
   navigatePop() {
     navigation.pop();
+  }
+
+  navigateDetailProduct(
+      String? productName,
+      String? imgURL,
+      String? bookTitle,
+      String? bookAuthor,
+      String? bookPrice,
+      String? bookDescription,
+      BuildContext context) {
+    Navigator.of(context).pushNamed(NavigationConstants.PRODUCT_DETAIL_VIEW,
+        arguments: ProductDetailArguments(
+            productName: productName,
+            imgURL: imgURL,
+            bookTitle: bookTitle,
+            bookAuthor: bookAuthor,
+            bookPrice: bookPrice,
+            bookDescription: bookDescription));
+  }
+
+  Future<void> fetchLike(int? userId, int? productId) async {
+    likeLoading(true);
+    await productService.fetchLike(userId, productId);
+    likeLoading(false);
+  }
+
+  Future<void> fetchUnLike(int? userId, int? productId) async {
+    unLikeLoading(true);
+    await productService.fetchUnLike(userId, productId);
+    unLikeLoading(false);
+  }
+
+  favoriteToggleFetch(int? userId, int? productId) async {
+    if (state.favoriteButton) {
+     await fetchLike(userId, productId);
+    } else {
+      await  fetchUnLike(userId, productId);
+    }
+  }
+
+  favoriteButton(bool ischeck) {
+    ischeck = !ischeck;
+    emit(state.copyWith(favoriteButton: ischeck));
   }
 
   @override

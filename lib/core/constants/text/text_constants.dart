@@ -18,6 +18,8 @@ class TextConstants {
   static const search = 'Search';
   static const viewAll = 'View All';
   static const catalog = 'Catalog';
+  static const summary = 'Summary';
+  static const buyNow = 'Buy Now';
 
 
 }

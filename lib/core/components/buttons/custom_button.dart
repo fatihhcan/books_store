@@ -5,7 +5,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CustomButton extends StatelessWidget {
   final void Function()? onTap;
   final String title;
-  const CustomButton({super.key, this.onTap, required this.title});
+  final bool buttonPrice;
+  final String? price;
+  const CustomButton(
+      {super.key, this.onTap, required this.title, this.buttonPrice = false, this.price});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,27 @@ class CustomButton extends StatelessWidget {
         ),
         child: Padding(
           padding: context.paddingLowVertical,
-          child: Text(title, style: context.textTheme.headline5, textAlign: TextAlign.center,),
+          child: buttonPrice
+              ? Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                      Text(
+                      price!,
+                      style: context.textTheme.headline5,
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      title,
+                      style: context.textTheme.headline5,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                )
+              : Text(
+                  title,
+                  style: context.textTheme.headline5,
+                  textAlign: TextAlign.center,
+                ),
         ),
       ),
     );

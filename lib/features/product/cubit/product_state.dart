@@ -1,24 +1,31 @@
 part of 'product_cubit.dart';
 
 class ProductState {
-  final bool categoriesLoading;
   final bool productsLoading;
-  final bool imageLoading;
+  final bool likeLoading;
+  final bool unLikeLoading;
+  final bool favoriteButton;
 
-
-  const ProductState({this.categoriesLoading = false, this.productsLoading = false, this.imageLoading = false});
+  const ProductState(
+      {this.productsLoading = false,
+      this.likeLoading = false,
+      this.unLikeLoading = false,
+      this.favoriteButton = false
+      });
   @override
-  List<Object?> get props => [categoriesLoading, productsLoading, imageLoading];
+  List<Object?> get props => [productsLoading, likeLoading, unLikeLoading, favoriteButton];
 
   ProductState copyWith({
-    bool? categoriesLoading,
     bool? productsLoading,
-    bool? imageLoading,
+    bool? likeLoading,
+    bool? unLikeLoading,
+    bool? favoriteButton,
   }) {
     return ProductState(
-      categoriesLoading: categoriesLoading ?? this.categoriesLoading,
       productsLoading: productsLoading ?? this.productsLoading,
-      imageLoading: imageLoading ?? this.imageLoading,
+      likeLoading: likeLoading ?? this.likeLoading,
+      unLikeLoading: unLikeLoading ?? this.unLikeLoading,
+      favoriteButton: favoriteButton ?? this.favoriteButton,
     );
   }
 }

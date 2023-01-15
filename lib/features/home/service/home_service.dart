@@ -21,11 +21,11 @@ class HomeService extends IHomeService {
             'Content-Type': 'application/json',
           }));
       final List<CategoriesModel> result =
-          ResponseParser<CategoriesModel>(response: response['category']).fromList(model: CategoriesModel());
-      
-      AppStateManager.instance.categories = result ;
+          ResponseParser<CategoriesModel>(response: response['category'])
+              .fromList(model: CategoriesModel());
+
+      AppStateManager.instance.categories = result;
       return result;
-      
     } on DioError catch (e) {
       throw DioException.fromDioError(e);
     }
@@ -34,16 +34,17 @@ class HomeService extends IHomeService {
   @override
   Future<List<ProductsModel?>> fetchProducts(String categoryId) async {
     try {
-      final response = await client.get('${NetWorkRoutes.PRODUCT.value}/$categoryId',
-          options: Options(headers: {
-            'Content-Type': 'application/json',
-          }));
+      final response =
+          await client.get('${NetWorkRoutes.PRODUCT.value}/$categoryId',
+              options: Options(headers: {
+                'Content-Type': 'application/json',
+              }));
       final List<ProductsModel> result =
-          ResponseParser<ProductsModel>(response: response['product']).fromList(model: ProductsModel());
-      
-      AppStateManager.instance.products = result ;
+          ResponseParser<ProductsModel>(response: response['product'])
+              .fromList(model: ProductsModel());
+
+      AppStateManager.instance.products = result;
       return result;
-      
     } on DioError catch (e) {
       throw DioException.fromDioError(e);
     }
@@ -56,16 +57,15 @@ class HomeService extends IHomeService {
           options: Options(headers: {
             'Content-Type': 'application/json',
           }),
-          data:  RequestImageModel(
-                  fileName: fileName,)
-              .toJson()
-          );
+          data: RequestImageModel(
+            fileName: fileName,
+          ).toJson());
       final ImageModel? result =
-          ResponseParser<ImageModel>(response: response['action_product_image']).fromMap(model: ImageModel());
-      
-      AppStateManager.instance.image = result ;
+          ResponseParser<ImageModel>(response: response['action_product_image'])
+              .fromMap(model: ImageModel());
+
+      AppStateManager.instance.image = result;
       return result;
-      
     } on DioError catch (e) {
       throw DioException.fromDioError(e);
     }
