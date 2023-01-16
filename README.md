@@ -1,20 +1,27 @@
 # Books Store
 
-Online book shop application
+Online book shop application.
 
 # Viedeos
-***
+
+
+https://user-images.githubusercontent.com/45641833/212577470-b9a4172a-775a-4cc3-b1e3-e7d2944048eb.mp4
+
+https://user-images.githubusercontent.com/45641833/212577492-4af850e1-a59f-49c3-8e6b-5d1371c8d0b9.mov
+
+
 
 # Subject
-***
+
 - BLoC/Cubit was used for State Management.
 - Dio was used for API requests.
 - Equatable was used to check if your objects are equal.
 - JSON serializable/annotation was used for automatically generate code.
 - SharedPrefs was used for the caching process.
 - Screen Util adapting screen and font size.
-#Tasks 📋
-***
+
+# Tasks 📋
+
 ## Splash Screen - 1/6 
 Waiting for 3 seconds. Token control and routing are being performed.
 **splash_cubit.dart**
